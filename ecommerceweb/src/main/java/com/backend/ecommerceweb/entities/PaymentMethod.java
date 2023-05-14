@@ -1,4 +1,4 @@
-package com.backend.ecommerceweb.model;
+package com.backend.ecommerceweb.entities;
 
 public enum PaymentMethod {
     CASH,
