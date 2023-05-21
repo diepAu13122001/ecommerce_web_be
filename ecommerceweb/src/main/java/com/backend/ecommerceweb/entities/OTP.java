@@ -1,7 +1,7 @@
 package com.backend.ecommerceweb.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import javax.persistence.*;
+
 import java.util.Date;
 
 import lombok.Data;

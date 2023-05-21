@@ -1,6 +1,6 @@
 package com.backend.ecommerceweb.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

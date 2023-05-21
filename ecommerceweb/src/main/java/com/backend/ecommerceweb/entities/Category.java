@@ -1,10 +1,8 @@
 package com.backend.ecommerceweb.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

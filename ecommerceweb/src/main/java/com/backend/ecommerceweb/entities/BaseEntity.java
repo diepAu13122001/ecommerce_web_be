@@ -1,9 +1,10 @@
 package com.backend.ecommerceweb.entities;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @Data
