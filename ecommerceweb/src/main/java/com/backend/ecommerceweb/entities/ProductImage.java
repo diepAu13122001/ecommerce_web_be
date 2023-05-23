@@ -12,7 +12,6 @@ import lombok.Setter;
 @Table(name = "product_image")
 public class ProductImage extends BaseEntity {
 
-
     private String product_img;
     private String product_img_alt;
 

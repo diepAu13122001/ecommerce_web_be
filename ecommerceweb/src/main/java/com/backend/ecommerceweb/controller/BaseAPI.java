@@ -10,7 +10,6 @@ import com.backend.ecommerceweb.utils.JwtUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.bind.DateTypeAdapter;
-import lombok.experimental.ExtensionMethod;
 import org.apache.http.HttpHeaders;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
