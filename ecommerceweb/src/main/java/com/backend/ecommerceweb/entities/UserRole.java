@@ -14,7 +14,7 @@ public class UserRole implements Serializable {
 
     @Id
     @Column(name = "user_id")
-    private Long userId;
+    private int userId;
 
     @Id
     @Column(name = "role_id")

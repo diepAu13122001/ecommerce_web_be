@@ -1,17 +1,17 @@
 package com.backend.ecommerceweb.entities;
 
 import javax.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
-@Table(name = "shipper")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = false)
 public class Shipper extends BaseEntity {
 
     private String name;

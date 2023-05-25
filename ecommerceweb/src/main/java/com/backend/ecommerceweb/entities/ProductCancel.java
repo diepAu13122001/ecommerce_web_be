@@ -1,26 +1,27 @@
 package com.backend.ecommerceweb.entities;
 
 import javax.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
 @Data
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "product_cancel")
 public class ProductCancel extends BaseEntity{
 
     private int quantity;
     private Double unit_price;
     private Date created_at;
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 
-    @OneToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order;
 
 
 }

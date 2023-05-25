@@ -4,14 +4,14 @@ import javax.persistence.*;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Data
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "otp")
 public class OTP extends  BaseEntity{
 

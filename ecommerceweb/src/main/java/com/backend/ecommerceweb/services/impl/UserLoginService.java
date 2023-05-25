@@ -13,7 +13,7 @@ public class UserLoginService extends ABaseService implements IUserLoginService 
     }
 
     @Override
-    public UserLogin findUserLoginByUserId(Long id) {
+    public UserLogin findUserLoginByUserId(int id) {
         return userLoginRepository.findUserLoginByUserId(id);
     }
 }

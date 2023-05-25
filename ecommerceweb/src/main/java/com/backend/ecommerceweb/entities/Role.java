@@ -1,9 +1,8 @@
 package com.backend.ecommerceweb.entities;
 
 import javax.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +10,9 @@ import java.util.Set;
 @Entity
 @Table(name = "`role`")
 @Data
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Role {
 
     @Id

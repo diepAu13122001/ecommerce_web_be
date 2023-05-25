@@ -1,8 +1,6 @@
 package com.backend.ecommerceweb.entities;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Where;
@@ -14,9 +12,11 @@ import java.util.Set;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "`user`")
-@Getter
-@Setter
 public class User extends BaseEntity {
 
     @Column(name = "user_name")

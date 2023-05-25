@@ -1,6 +1,7 @@
 package com.backend.ecommerceweb.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -11,11 +12,9 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable, Cloneable {
-    private static final long serialVersionUID = 1L;
-
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     protected Long id;
 
 }

@@ -2,24 +2,19 @@ package com.backend.ecommerceweb.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "province")
+@Builder
 public class Province extends BaseEntity{
-
-
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "province_id", referencedColumnName = "id")
-    @JsonIgnoreProperties("province")
-    private List<District> districts;
 }

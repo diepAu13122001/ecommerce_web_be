@@ -2,15 +2,16 @@ package com.backend.ecommerceweb.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "district")
-@Getter
-@Setter
 public class District extends BaseEntity {
 
     private String name;
