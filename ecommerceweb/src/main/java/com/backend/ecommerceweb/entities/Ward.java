@@ -1,6 +1,7 @@
 package com.backend.ecommerceweb.entities;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 import lombok.*;
 
@@ -9,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "`ward`")
 public class Ward extends BaseEntity {
 

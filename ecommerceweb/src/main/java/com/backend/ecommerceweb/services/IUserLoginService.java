@@ -4,5 +4,5 @@ import com.backend.ecommerceweb.entities.UserLogin;
 
 public interface IUserLoginService {
     void save(UserLogin userLogin);
-    UserLogin findUserLoginByUserId(int id);
+    UserLogin findUserLoginByUserId(Long id);
 }

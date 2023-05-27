@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface IWardRepository extends JpaRepository<Ward, Long> {
-    List<District> findByName(String wardName);
+    List<Ward> findByName(String wardName);
+    List<Ward> findByNameContaining(String wardName);
+    List<District> findByDistrict(Long id);
 }

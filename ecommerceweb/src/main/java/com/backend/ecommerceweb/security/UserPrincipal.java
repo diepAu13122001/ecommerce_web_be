@@ -7,7 +7,7 @@ import java.util.Collection;
 
 @Data
 public class UserPrincipal implements UserDetails {
-    private int userId;
+    private Long userId;
     private String username;
     private String password;
     private Collection authorities;

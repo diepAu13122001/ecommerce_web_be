@@ -16,7 +16,13 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
-@Table(name = "`user`")
+@Table(
+        name = "`user`",
+        uniqueConstraints = @UniqueConstraint(
+                name = "email_unique",
+                columnNames = "email"
+        )
+)
 public class User extends BaseEntity {
 
     @Column(name = "user_name")

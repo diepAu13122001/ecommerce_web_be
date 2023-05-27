@@ -10,11 +10,18 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
+@Table(
+        name = "supplier",
+        uniqueConstraints = @UniqueConstraint(
+                name = "phone_unique",
+                columnNames = "phone"
+        )
+)
 public class Supplier extends BaseEntity{
 
     private String name;
-    private int total_order;
-    private Long phone;
+    private int totalOrder;
+    private String phone;
 
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")

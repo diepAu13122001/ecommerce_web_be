@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "product")
 public class Product  extends  BaseEntity{
 
@@ -24,16 +23,16 @@ public class Product  extends  BaseEntity{
 
     private Double price;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "supplier_id", referencedColumnName = "id")
     private Supplier supplier;
 
-    private Double original_price;
+    private Double cost;
 
     @OneToMany
     @JoinColumn(name = "product_image", referencedColumnName = "id")
     @JsonIgnoreProperties("product_id")
-    private List<Product> products;
+    private List<ProductImage> productImages;
 
 
 }

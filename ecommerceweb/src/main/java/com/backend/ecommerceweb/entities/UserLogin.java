@@ -14,7 +14,7 @@ public class UserLogin {
 
     @Id
     @Column(name = "user_id")
-    private int userId;
+    private Long userId;
 
     private Boolean active;
 

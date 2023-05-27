@@ -4,19 +4,21 @@ import javax.persistence.*;
 
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "product_description")
 public class ProductDescription extends BaseEntity {
 
-    private String product_storageTemp;
-    private int product_expiry;
-    private Double product_weigh;
-    private String product_des;
+    private String productStorageTemp;
+    private Date expiryDate;
+    private Date manufacturingDate;
+    private Double productWeigh;
+    private String productDes;
 
     @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")

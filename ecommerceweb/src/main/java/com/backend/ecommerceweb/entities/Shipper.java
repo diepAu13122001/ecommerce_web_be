@@ -12,15 +12,21 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
+@Table (
+        name = "shipper",
+        uniqueConstraints = @UniqueConstraint(
+                name = "phone_unique",
+                columnNames = "phone"
+        )
+)
 public class Shipper extends BaseEntity {
 
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "district_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<District> districts;
 
-    private Long phone;
+    private String phone;
 
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -29,6 +35,6 @@ public class Shipper extends BaseEntity {
     private String email;
     private String url_avt;
     private String gender;
-    private String order_number;
+    private String orderNumber;
 
 }
