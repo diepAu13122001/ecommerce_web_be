@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ICategoryRepository extends JpaRepository<Category, Long> {
-    List<Category> findByDescription (String description);
+    List<Category> findByName(String name);
+    List<Category> findByNameContaining(String name);
+    List<Category> findByDescriptionContaining(String description);
+
 
 }

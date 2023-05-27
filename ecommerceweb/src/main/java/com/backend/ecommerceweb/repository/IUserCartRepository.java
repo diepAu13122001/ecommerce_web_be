@@ -10,9 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface IUserCartRepository extends JpaRepository<UserCart, Long> {
-    List<UserCart> findByProduct_amount(int amount);
-    List<UserCart> findByGift_id(Long id);
-
+    List<UserCart> findByProductAmount(int amount);
+    List<UserCart> findByGiftId(Long id);
     UserCart findByUser(Long userId);
 
 

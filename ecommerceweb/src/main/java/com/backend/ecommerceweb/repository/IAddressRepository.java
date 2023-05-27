@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface IAddressRepository extends JpaRepository<Address, Long> {
-   List<Address> findByWard(Ward ward);
-   List<Address> findByAddress(String address);
+   List<Address> findByWard(Long wardId);
+   List<Address> findByAddressContaining(String address);
 }

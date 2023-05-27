@@ -1,7 +1,6 @@
 package com.backend.ecommerceweb.services;
 
-import com.backend.ecommerceweb.repository.IUserLoginRepository;
-import com.backend.ecommerceweb.repository.IUserRepository;
+import com.backend.ecommerceweb.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,33 +21,39 @@ public abstract class ABaseService {
     }
 
 
-    // repositoty
-//    @Autowired
-//    protected ITokenRepository tokenRepository;
-
     @Autowired
     protected IUserRepository userRepository;
-
     @Autowired
     protected IUserLoginRepository userLoginRepository;
+    @Autowired
+    protected ICategoryRepository categoryRepository;
+    @Autowired
+    protected IUserRoleRepository userRoleRepository;
+    @Autowired
+    protected IOrderDetailRepository orderDetailRepository;
+    @Autowired
+    protected IProvinceRepository provinceRepository;
+    @Autowired
+    protected IDistrictRepository districtRepository;
+    @Autowired
+    protected IWardRepository wardRepository;
+    @Autowired
+    protected IAddressRepository addressRepository;
+    @Autowired
+    protected IOrderRepository orderRepository;
+    @Autowired
+    protected IProductCancelRepository productCancelRepository;
+    @Autowired
+    protected IProductDescriptionRepository productDescriptionRepository;
+    @Autowired
+    protected IProductImageRepository productImageRepository;
+    @Autowired
+    protected IProductRepository productRepository;
+    @Autowired
+    protected IShipperRepository shipperRepository;
+    @Autowired
+    protected ISupplierRepository supplierRepository;
+    @Autowired
+    protected IUserCartRepository userCartRepository;
 
-//    @Autowired
-//    protected IRoleRepository roleRepository;
-
-//    @Autowired
-//    protected IUserRoleRepository userRoleRepository;
-//    @Autowired
-//    protected  IGradeRepository gradeRepository;
-//
-//    @Autowired
-//    protected IProvinceRepository provinceRepository;
-//
-//    @Autowired
-//    protected IDistrictRepository districtRepository;
-//
-//    @Autowired
-//    protected IWardRepository wardRepository;
-//
-//    @Autowired
-//    protected  IAddressRepository addressRepository;
 }

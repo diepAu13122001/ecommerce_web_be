@@ -9,10 +9,14 @@ import java.util.Date;
 import java.util.List;
 @Repository
 public interface IOrderDetailRepository extends JpaRepository<OrderDetail, Long> {
-//    List<OrderDetail> findByUserId (String userId);
-//    List<OrderDetail> findByAddressId (String addressId);
-//    List<OrderDetail> findByOrderDate (Date orderDate);
-//    List<OrderDetail> findByDeliveryDate (Date deliveryDate);
-//    List<OrderDetail> findByPaymentMethod (PaymentMethod paymentMethod);
-//    List<OrderDetail> findByDeliveryStatus (String isDelivered);
+    List<OrderDetail> findByProduct(Long productId);
+    List<OrderDetail> findByQuantity(int quantity);
+    List<OrderDetail> findByQuantityBetween(int min, int max);
+    List<OrderDetail> findByQuantityLessThanEqual(int quantity);
+    List<OrderDetail> findByQuantityGreaterThanEqual(int quantity);
+    List<OrderDetail> findByIntoMoney(Long intoMoney);
+    List<OrderDetail> findByIntoMoneyBetween(Long min, Long max);
+    List<OrderDetail> findByIntoMoneyLessThanEqual(Long intoMoney);
+    List<OrderDetail> findByIntoMoneyGreaterThanEqual(Long intoMoney);
+    List<OrderDetail> findByOrder(Long orderId);
 }

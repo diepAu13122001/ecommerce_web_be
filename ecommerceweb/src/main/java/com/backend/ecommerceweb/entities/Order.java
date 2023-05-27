@@ -15,25 +15,25 @@ import java.util.Date;
 @Table(name = "order")
 public class Order extends BaseEntity {
 
-    private Date order_date;
-    private Date delivery_date;
-    private Date update_date;
-    private String order_status;
-    private PaymentMethod payment_method;
+    private Date orderedDate;
+    private Date deliveredDate;
+    private Date updatedDate;
+    private String orderStatus;
+    private PaymentMethod paymentMethod;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "created_by", referencedColumnName = "id")
-    private User created_user;
+    private User createdUser;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "updated_by", referencedColumnName = "id")
-    private User updated_user;
+    private User updatedUser;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    private Boolean is_delivered;
+    private Boolean isDelivered;
 
     @ManyToOne
     @JoinColumn(name="shipper_id", referencedColumnName = "id")

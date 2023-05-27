@@ -9,5 +9,7 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface IProductImageRepository extends JpaRepository<ProductImage, Long> {
-
+    List<ProductImage> findByImgUrlContaining(String url);
+    List<ProductImage> findByImgAltContaining(String alt);
+    List<ProductImage> findByProduct(Long productId);
 }

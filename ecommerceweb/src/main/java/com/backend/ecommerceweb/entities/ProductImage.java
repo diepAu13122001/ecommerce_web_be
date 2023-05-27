@@ -13,8 +13,8 @@ import lombok.*;
 @Table(name = "product_image")
 public class ProductImage extends BaseEntity {
 
-    private String product_img;
-    private String product_img_alt;
+    private String imgUrl;
+    private String imgAlt;
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")

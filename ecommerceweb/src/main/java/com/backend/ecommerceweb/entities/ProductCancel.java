@@ -16,8 +16,8 @@ import java.util.Date;
 public class ProductCancel extends BaseEntity{
 
     private int quantity;
-    private Double unit_price;
-    private Date created_at;
+    private Double unitPrice;
+    private Date createdAt;
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;

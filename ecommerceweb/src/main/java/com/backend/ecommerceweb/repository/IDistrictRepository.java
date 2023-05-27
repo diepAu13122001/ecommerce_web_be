@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface IDistrictRepository extends JpaRepository<District, Long> {
     List<District> findByName(String districtName);
-    List<District> findByProvinceId (String provinceId);
+    List<District> findByNameContaining(String districtName);
+    List<District> findByProvince(Long provinceId);
 }

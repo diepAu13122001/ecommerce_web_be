@@ -17,8 +17,8 @@ public class UserCart extends BaseEntity {
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Product> products;
-    private int product_amount;
-    private Long gift_id;
+    private int productAmount;
+    private Long giftId;
 
     @OneToOne
     @JoinColumn(name="user_id", referencedColumnName = "id")
