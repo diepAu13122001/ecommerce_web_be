@@ -1,13 +1,10 @@
-package com.backend.ecommerceweb.repository;
+package com.backend.ecommerceweb.services;
 
 import com.backend.ecommerceweb.entities.Shipper;
-import com.backend.ecommerceweb.entities.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface IShipperRepository extends JpaRepository<Shipper, Long> {
+public interface IShipperService{
     List<Shipper> findByName(String name);
     List<Shipper> findByNameContaining(String name);
     Shipper findByPhone(String phone);
@@ -18,4 +15,7 @@ public interface IShipperRepository extends JpaRepository<Shipper, Long> {
     List<Shipper> findByGender(String gender);
     List<Shipper> findByOrderNumber(String orderNum);
     List<Shipper> findByOrderNumberContaining(String orderNum);
+    Shipper createShipper (Shipper shipper);
+    List<Shipper> findAll();
+    Shipper findById(Long shipperId);
 }

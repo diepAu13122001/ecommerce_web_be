@@ -1,14 +1,10 @@
-package com.backend.ecommerceweb.services.impl;
+package com.backend.ecommerceweb.services;
 
 import com.backend.ecommerceweb.entities.ProductCancel;
-import com.backend.ecommerceweb.entities.UserLogin;
-import com.backend.ecommerceweb.services.ABaseService;
-import com.backend.ecommerceweb.services.IUserLoginService;
 
 import java.util.Date;
 import java.util.List;
 
-@org.springframework.stereotype.Service
 public class ProductCancelService extends ABaseService{
     List<ProductCancel> findByQuantity(int quantity){
         return productCancelRepository.findByQuantity(quantity);

@@ -55,5 +55,6 @@ public abstract class ABaseService {
     protected ISupplierRepository supplierRepository;
     @Autowired
     protected IUserCartRepository userCartRepository;
-
+    @Autowired
+    protected IPaymentMethodRepository paymentMethodRepository;
 }

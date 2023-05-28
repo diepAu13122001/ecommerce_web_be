@@ -1,16 +1,11 @@
-package com.backend.ecommerceweb.repository;
+package com.backend.ecommerceweb.services;
 
 import com.backend.ecommerceweb.entities.Order;
-import com.backend.ecommerceweb.entities.PaymentMethod;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-@Repository
-public interface IOrderRepository extends JpaRepository<Order, Long> {
+public interface IOrderService {
     List<Order> findByOrderedDate(Date orderedDate);
 
     List<Order> findByOrderedDateGreaterThanEqual(Date orderedDate);
@@ -48,6 +43,4 @@ public interface IOrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByIsDelivered(boolean isDelivered);
 
     List<Order> findByShipper(Long shipperId);
-
-
 }

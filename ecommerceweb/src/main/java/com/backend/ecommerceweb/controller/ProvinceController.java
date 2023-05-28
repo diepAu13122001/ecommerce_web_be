@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Constants.API_VERSION+"province")
+@RequestMapping(Constants.API_VERSION+"/province")
 public class ProvinceController extends BaseAPI {
     @GetMapping("")
     public String getDemoString () {

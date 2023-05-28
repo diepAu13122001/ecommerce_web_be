@@ -10,12 +10,9 @@ import com.backend.ecommerceweb.model.dtos.auths.RegisterAccountDTO;
 import com.backend.ecommerceweb.model.wrapper.ObjectResponseWrapper;
 import com.backend.ecommerceweb.security.UserPrincipal;
 import com.backend.ecommerceweb.services.impl.UserService;
-import com.backend.ecommerceweb.services.impl.UserService;
 import com.backend.ecommerceweb.utils.Constants;
-import lombok.experimental.ExtensionMethod;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 //@ExtensionMethod(Extensions.class)

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Constants.API_VERSION+"/product")
-public class ProductController extends BaseAPI {
+@RequestMapping(Constants.API_VERSION+"/paymentMethod")
+public class PaymentMethodController extends BaseAPI {
     @GetMapping("")
     public String getDemoString () {
         return "Hello";

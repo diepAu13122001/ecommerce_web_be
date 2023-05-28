@@ -3,40 +3,67 @@ package com.backend.ecommerceweb.services.impl;
 import com.backend.ecommerceweb.entities.Shipper;
 import com.backend.ecommerceweb.entities.UserLogin;
 import com.backend.ecommerceweb.services.ABaseService;
+import com.backend.ecommerceweb.services.IShipperService;
 import com.backend.ecommerceweb.services.IUserLoginService;
 
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.stereotype.Service
-public class ShipperService extends ABaseService{
-    List<Shipper> findByName(String name){
+public class ShipperService extends ABaseService implements IShipperService {
+    @Override
+    public List<Shipper> findByName(String name){
         return shipperRepository.findByName(name);
     }
-    List<Shipper> findByNameContaining(String name){
+    @Override
+    public List<Shipper> findByNameContaining(String name){
         return shipperRepository.findByNameContaining(name);
     }
-    Shipper findByPhone(Long phone){
+    @Override
+    public Shipper findByPhone(String phone){
         return shipperRepository.findByPhone(phone);
     }
-    Shipper findByPhoneContaining(Long phone){
+    @Override
+    public Shipper findByPhoneContaining(String phone){
         return shipperRepository.findByPhoneContaining(phone);
     }
-    Shipper findByAddress(Long addressId){
+    @Override
+    public Shipper findByAddress(Long addressId){
         return shipperRepository.findByAddress(addressId);
     }
-    List<Shipper> findByEmail(String email){
+    @Override
+    public List<Shipper> findByEmail(String email){
         return shipperRepository.findByEmail(email);
     }
-    List<Shipper> findByEmailContaining(String email){
+    @Override
+    public  List<Shipper> findByEmailContaining(String email){
         return shipperRepository.findByEmailContaining(email);
     }
-    List<Shipper> findByGender(String gender){
+    @Override
+    public List<Shipper> findByGender(String gender){
         return shipperRepository.findByGender(gender);
     }
-    List<Shipper> findByOrderNumber(String orderNum){
+    @Override
+    public List<Shipper> findByOrderNumber(String orderNum){
         return shipperRepository.findByOrderNumber(orderNum);
     }
-    List<Shipper> findByOrderNumberContaining(String orderNum){
+    @Override
+    public List<Shipper> findByOrderNumberContaining(String orderNum){
         return shipperRepository.findByOrderNumberContaining(orderNum);
+    }
+    @Override
+    public Shipper createShipper (Shipper shipper) {
+        return shipperRepository.save(shipper);
+    }
+
+    @Override
+    public List<Shipper> findAll() {
+        return shipperRepository.findAll();
+    }
+
+    @Override
+    public Shipper findById(Long shipperId) {
+        Optional<Shipper> s = shipperRepository.findById(shipperId);
+        return s.isPresent() == false ? null : s.get();
     }
 }

@@ -19,6 +19,8 @@ public class Order extends BaseEntity {
     private Date deliveredDate;
     private Date updatedDate;
     private String orderStatus;
+    @OneToOne
+    @JoinColumn(name = "payment_method_id", referencedColumnName = "id")
     private PaymentMethod paymentMethod;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

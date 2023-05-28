@@ -1,15 +1,17 @@
 package com.backend.ecommerceweb.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 
 @Entity
-@Table(name = "`user_role`")
 @Data
 @IdClass(UserRole.class)
+@Table(name = "user_role")
 public class UserRole implements Serializable {
 
     @Id

@@ -15,7 +15,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = false)
 @Table(
         name = "`user`",
         uniqueConstraints = @UniqueConstraint(

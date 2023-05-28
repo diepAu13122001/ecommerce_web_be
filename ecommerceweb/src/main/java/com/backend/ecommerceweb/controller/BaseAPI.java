@@ -1,11 +1,8 @@
 package com.backend.ecommerceweb.controller;
 
-import com.backend.ecommerceweb.repository.IUserLoginRepository;
-import com.backend.ecommerceweb.repository.IUserRepository;
-import com.backend.ecommerceweb.repository.IUserRoleRepository;
-import com.backend.ecommerceweb.services.IUserLoginService;
-import com.backend.ecommerceweb.services.IUserRoleService;
-import com.backend.ecommerceweb.services.IUserService;
+import com.backend.ecommerceweb.repository.*;
+import com.backend.ecommerceweb.services.*;
+import com.backend.ecommerceweb.services.impl.ShipperService;
 import com.backend.ecommerceweb.utils.JwtUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,18 +50,27 @@ public abstract class BaseAPI {
     @Autowired
     IUserRoleRepository userRoleRepository;
 
-//    @Autowired
-//    protected IProvinceRepository provinceRepository;
-//
-//    @Autowired
-//    protected IDistrictRepository districtRepository;
-//
-//    @Autowired
-//    protected IWardRepository wardRepository;
-//
-//    @Autowired
-//    protected IAddressRepository addressRepository;
-//
+    @Autowired
+    protected IProvinceRepository provinceRepository;
+
+    @Autowired
+    protected IDistrictRepository districtRepository;
+
+    @Autowired
+    protected IWardRepository wardRepository;
+
+    @Autowired
+    protected IAddressRepository addressRepository;
+
+    @Autowired
+    IShipperRepository shipperRepository;
+
+    @Autowired
+    IShipperService shipperService;
+
+    @Autowired
+    IAddressService addressService;
+
 //    @Autowired
 //    protected IOtpRepository otpRepository;
 
