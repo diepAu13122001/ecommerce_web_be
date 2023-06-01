@@ -8,4 +8,7 @@ public interface ICategoryService {
     List<Category> findByName(String name);
     List<Category> findByNameContaining(String name);
     List<Category> findByDescriptionContaining(String description);
+    List<Category> findAll();
+    List<Category> findAllByOrderByNameAsc();
+    Category createCategory(Category category);
 }

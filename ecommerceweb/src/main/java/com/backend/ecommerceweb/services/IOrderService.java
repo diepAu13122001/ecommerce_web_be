@@ -43,4 +43,13 @@ public interface IOrderService {
     List<Order> findByIsDelivered(boolean isDelivered);
 
     List<Order> findByShipper(Long shipperId);
+
+    List<Order> findAll();
+
+    List<Order> findAllByOrderByOrderedDateDesc();
+
+    List<Order> findAllByOrderByDeliveredDateDesc();
+
+    Order createOrder(Order order);
+
 }

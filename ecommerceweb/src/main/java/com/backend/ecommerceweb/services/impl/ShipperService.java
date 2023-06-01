@@ -66,4 +66,8 @@ public class ShipperService extends ABaseService implements IShipperService {
         Optional<Shipper> s = shipperRepository.findById(shipperId);
         return s.isPresent() == false ? null : s.get();
     }
+
+    public void deleteById(Long shipperId) {
+        shipperRepository.deleteById(shipperId);
+    }
 }

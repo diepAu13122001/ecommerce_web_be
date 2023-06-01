@@ -102,6 +102,7 @@ public class ShipperController extends BaseAPI {
         if (check == null) {
             throw new VeggyServiceException("Không tìm thấy dữ liệu theo yêu cầu.");
         }
+        shipperService.deleteById(shipperId);
         return ObjectResponseWrapper.builder()
                 .status(1)
                 .message("Xoá dữ liệu thành công.").build();

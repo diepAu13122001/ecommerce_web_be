@@ -18,4 +18,5 @@ public interface IShipperService{
     Shipper createShipper (Shipper shipper);
     List<Shipper> findAll();
     Shipper findById(Long shipperId);
+    void deleteById(Long shipperId);
 }
