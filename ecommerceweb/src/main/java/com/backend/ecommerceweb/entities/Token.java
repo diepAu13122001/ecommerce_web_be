@@ -17,6 +17,7 @@ public class Token {
     @Column(length = 1000)
     private String token;
 
+    @Column(name = "token_exp_date")
     private Date tokenExpDate;
 
 

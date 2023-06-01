@@ -12,6 +12,7 @@ import com.backend.ecommerceweb.security.UserPrincipal;
 import com.backend.ecommerceweb.services.impl.UserService;
 import com.backend.ecommerceweb.services.impl.UserService;
 import com.backend.ecommerceweb.utils.Constants;
+import com.backend.ecommerceweb.utils.SendMail;
 import lombok.experimental.ExtensionMethod;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,22 +65,22 @@ public class UserController extends BaseAPI{
             /* tạo role*/
             UserRole role = new UserRole();
             role.setUserId(userCreate.getId());
-            role.setRoleId("USER");
+            role.setRoleId("ADMIN");
             userRoleRepository.save(role);
 
 
 //            // gửi mail
-//            UserPrincipal userPrincipal = new UserPrincipal();
-//            userPrincipal.setUserId(userCreate.getId());
-//            userPrincipal.setUsername(userCreate.getEmail());
-//            Token token = new Token();
-//            token.setToken(jwtUtil.generateToken(userPrincipal));
-//            token.setTokenExpDate(jwtUtil.generateExpirationDate());
-//            SendMail.sendMailActiveAccount(userCreate.getEmail(), token.getToken());
+            UserPrincipal userPrincipal = new UserPrincipal();
+            userPrincipal.setUserId(userCreate.getId());
+            userPrincipal.setUsername(userCreate.getEmail());
+            Token token = new Token();
+            token.setToken(jwtUtil.generateToken(userPrincipal));
+            token.setTokenExpDate(jwtUtil.generateExpirationDate());
+            SendMail.sendMailActiveAccount(userCreate.getEmail(), token.getToken());
 
             return ObjectResponseWrapper.builder()
                     .status(1)
-                    .message("Taọ tài khoản thành công")
+                    .message("Tạo tài khoản thành công")
                     .build();
         } catch (VeggyServiceException e) {
             return ObjectResponseWrapper.builder()
