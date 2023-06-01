@@ -11,11 +11,9 @@ import com.backend.ecommerceweb.model.wrapper.ObjectResponseWrapper;
 import com.backend.ecommerceweb.security.UserPrincipal;
 import com.backend.ecommerceweb.services.impl.UserService;
 import com.backend.ecommerceweb.utils.Constants;
-<<<<<<< HEAD
-=======
 import com.backend.ecommerceweb.utils.SendMail;
 import lombok.experimental.ExtensionMethod;
->>>>>>> nhatduc
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
