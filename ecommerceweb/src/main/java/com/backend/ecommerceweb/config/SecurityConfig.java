@@ -26,26 +26,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:8080");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.addAllowedOrigin("http://localhost:8080");
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", config);
 //        httpSecurity.addFilterBefore(new AuthenticationFilter(authenticationManager(), Constants.HEADER_TOKEN_NAME), UsernamePasswordAuthenticationFilter.class)
 //                .csrf()
 //                .disable();
 //                .and()
 //                .exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         httpSecurity
-                .cors().configurationSource(source)
+                .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .and()
-                .csrf().disable().authorizeRequests().antMatchers(Constants.AUTH_SERVICE_URL+"/register").permitAll()
+                .csrf().disable().authorizeRequests().antMatchers(Constants.AUTH_SERVICE_URL + "/register").permitAll()
                 .and()
                 .csrf().disable()
                 .addFilterBefore(
-                        new AuthenticationFilter(authenticationManager(), "HEADER_TOKEN_NAME"),
+                        new AuthenticationFilter(authenticationManager(), Constants.HEADER_TOKEN_NAME),
                         BasicAuthenticationFilter.class);
     }
 
