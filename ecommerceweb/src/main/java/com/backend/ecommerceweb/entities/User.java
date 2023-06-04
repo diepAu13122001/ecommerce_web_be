@@ -40,6 +40,8 @@ public class User extends BaseEntity {
     @JoinColumn(name = "id", referencedColumnName = "user_id")
     private UserLogin userLogin;
 
+
+
 //    @OneToMany(fetch = FetchType.EAGER)
 //    @Fetch(FetchMode.SELECT)
 //    @JoinColumn(name = "to_id", referencedColumnName = "id", updatable = false, insertable = false)

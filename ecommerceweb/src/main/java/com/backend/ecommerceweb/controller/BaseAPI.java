@@ -1,5 +1,6 @@
 package com.backend.ecommerceweb.controller;
 
+import com.backend.ecommerceweb.repository.IOtpRepository;
 import com.backend.ecommerceweb.repository.IUserLoginRepository;
 import com.backend.ecommerceweb.repository.IUserRepository;
 import com.backend.ecommerceweb.repository.IUserRoleRepository;
@@ -53,6 +54,9 @@ public abstract class BaseAPI {
 
     @Autowired
     IUserRoleRepository userRoleRepository;
+
+    @Autowired
+    protected IOtpRepository otpRepository;
 
 //    @Autowired
 //    protected IProvinceRepository provinceRepository;

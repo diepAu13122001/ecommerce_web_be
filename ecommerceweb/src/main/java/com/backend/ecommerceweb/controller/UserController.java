@@ -1,12 +1,8 @@
 package com.backend.ecommerceweb.controller;
 
-import com.backend.ecommerceweb.entities.Token;
-import com.backend.ecommerceweb.entities.User;
-import com.backend.ecommerceweb.entities.UserLogin;
-import com.backend.ecommerceweb.entities.UserRole;
+import com.backend.ecommerceweb.entities.*;
 import com.backend.ecommerceweb.handler.VeggyServiceException;
-import com.backend.ecommerceweb.model.dtos.auths.LoginDTO;
-import com.backend.ecommerceweb.model.dtos.auths.RegisterAccountDTO;
+import com.backend.ecommerceweb.model.dtos.auths.*;
 import com.backend.ecommerceweb.model.wrapper.ObjectResponseWrapper;
 import com.backend.ecommerceweb.security.UserPrincipal;
 import com.backend.ecommerceweb.services.impl.UserService;
@@ -22,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import java.io.UnsupportedEncodingException;
@@ -139,22 +136,22 @@ public class UserController extends BaseAPI{
                 .data(token.getToken())
                 .build();
     }
-//
-//    @GetMapping("/user/{user_id}")
+
+    @GetMapping("/user/{user_id}")
 //    @RequiredHeaderToken
 //    @Operation(summary = "Lấy thông tin user")
-//    public ObjectResponseWrapper getUser(@PathVariable("user_id") Long userId) {
-//        User user = userService.findById(userId);
-//        if (user == null) {
-//            throw new TutorServiceException("Không tìm thấy user này.");
-//        }
-//
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .data(user)
-//                .build();
-//    }
-//
+    public ObjectResponseWrapper getUser(@PathVariable("user_id") Long userId) {
+        User user = userService.findById(userId);
+        if (user == null) {
+            throw new VeggyServiceException("Không tìm thấy user này.");
+        }
+
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .data(user)
+                .build();
+    }
+
     @GetMapping("/active")
 //    @RequiredHeaderToken
 //    @Operation(summary = "Kích hoạt tài khoản")
@@ -179,171 +176,167 @@ public class UserController extends BaseAPI{
                 .build();
 
     }
-//
-//    @GetMapping("/user")
+
+    @GetMapping("/user")
 //    @RequiredHeaderToken
 //    @Operation(summary = "Lấy thông tin user")
-//    public ObjectResponseWrapper getUserOwner(@RequestHeader(Constants.HEADER_TOKEN_NAME) String accessToken) {
-//        String token = "";
-//        if (accessToken != null && accessToken.length() > 6) {
-//            token = accessToken.substring(6);
-//        }
-//        UserPrincipal userPrincipal = jwtUtil.getUserFromToken(token);
-//        User user = userService.findById(userPrincipal.getUserId());
-//
-//        if (user == null) {
-//            throw new TutorServiceException("Không tìm thấy user này.");
-//        }
-//        UserDTO userDTO = user.toDTO();
-//        userDTO.setActive(user.getUserLogin().getActive());
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .data(userDTO)
-//                .build();
-//    }
-//
-//    @PutMapping("/password")
+    public ObjectResponseWrapper getUserOwner(@RequestHeader(Constants.HEADER_TOKEN_NAME) String accessToken) {
+        String token = "";
+        if (accessToken != null && accessToken.length() > 6) {
+            token = accessToken.substring(6);
+        }
+        UserPrincipal userPrincipal = jwtUtil.getUserFromToken(token);
+        User user = userService.findById(userPrincipal.getUserId());
+
+        if (user == null) {
+            throw new VeggyServiceException("Không tìm thấy user này.");
+        }
+        UserOutPutDTO userDTO = mapper.map(user, UserOutPutDTO.class);
+        userDTO.setActive(user.getUserLogin().getActive());
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .data(userDTO)
+                .build();
+    }
+
+    @PutMapping("/password")
 //    @RequiredHeaderToken
 //    @Operation(summary = "Đổi mật khẩu")
-//    public ObjectResponseWrapper changePassword(@RequestHeader(Constants.HEADER_TOKEN_NAME) String accessToken,
-//                                                @RequestBody(required = true) PasswordInputDTO passwordInputDTO) {
-//        String token = "";
-//        if (accessToken != null && accessToken.length() > 6) {
-//            token = accessToken.substring(6);
-//        }
-//        UserPrincipal userPrincipal = jwtUtil.getUserFromToken(token);
-//        if (userPrincipal == null) {
-//            throw new TutorServiceException("Không tìm thấy user này.");
-//        }
-//
-//        UserLogin userLogin = userLoginService.findUserLoginByUserId(userPrincipal.getUserId());
-//
-//        if (!new BCryptPasswordEncoder().matches(passwordInputDTO.getOldPassword().trim(), userLogin.getPassword())) {
-//            throw new TutorServiceException("Sai mật khẩu cũ.");
-//        }
-//
-//        userLogin.setPassword(new BCryptPasswordEncoder().encode(passwordInputDTO.getNewPassword().trim()));
-//        userLoginService.save(userLogin);
-//
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .message("Đổi mật khẩu thành công.")
-//                .build();
-//    }
-//
-//    @GetMapping("/forgot-password")
+    public ObjectResponseWrapper changePassword(@RequestHeader(Constants.HEADER_TOKEN_NAME) String accessToken,
+                                                @RequestBody(required = true) PasswordInputDTO passwordInputDTO) {
+        String token = "";
+        if (accessToken != null && accessToken.length() > 6) {
+            token = accessToken.substring(6);
+        }
+        UserPrincipal userPrincipal = jwtUtil.getUserFromToken(token);
+        if (userPrincipal == null) {
+            throw new VeggyServiceException("Không tìm thấy user này.");
+        }
+
+        UserLogin userLogin = userLoginService.findUserLoginByUserId(userPrincipal.getUserId());
+
+        if (!new BCryptPasswordEncoder().matches(passwordInputDTO.getOldPassword().trim(), userLogin.getPassword())) {
+            throw new VeggyServiceException("Sai mật khẩu cũ.");
+        }
+
+        userLogin.setPassword(new BCryptPasswordEncoder().encode(passwordInputDTO.getNewPassword().trim()));
+        userLoginService.save(userLogin);
+
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .message("Đổi mật khẩu thành công.")
+                .build();
+    }
+
+    @GetMapping("/forgot-password")
 //    @Operation(summary = "Quên mật khẩu")
-//    public ObjectResponseWrapper forgotPassword(@RequestParam(required = true) String email) throws MessagingException, UnsupportedEncodingException {
-//        User user = userService.findByEmail(email);
-//        if (user == null) {
-//            throw new TutorServiceException("Không tìm thấy user này.");
-//        }
-//        int otp = new Random().nextInt(1000000 - 100000) + 100000;
-//        SendMail.sendMailOTP(email, otp);
-//        otpRepository.save(new Otp(user.getId(), (long) otp, new Date()));
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .message("Vui lòng kiểm tra email.")
-//                .build();
-//    }
-//
-//    @PostMapping("/forgot-password/")
+    public ObjectResponseWrapper forgotPassword(@RequestParam(required = true) String email) throws MessagingException, UnsupportedEncodingException {
+        User user = userService.findByEmail(email);
+        if (user == null) {
+            throw new VeggyServiceException("Không tìm thấy user này.");
+        }
+        int otp = new Random().nextInt(1000000 - 100000) + 100000;
+        SendMail.sendMailOTP(email, otp);
+        otpRepository.save(new OTP(user.getId(), (long) otp, new Date()));
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .message("Vui lòng kiểm tra email.")
+                .build();
+    }
+
+    @PostMapping("/forgot-password/")
 //    @Operation(summary = "Cập nhật mật khẩu mới")
-//    public ObjectResponseWrapper validateOTP(@RequestBody(required = true) ValidateOtpInpoutDTO validateOtpInpoutDTO) {
-//        User user = userService.findByEmail(validateOtpInpoutDTO.getEmail());
-//        if (user == null) {
-//            throw new TutorServiceException("Không tìm thấy user này.");
-//        }
-//
-//        Otp otp = otpRepository.findOtpByUserId(user.getId());
-//        if (otp == null) {
-//            throw new TutorServiceException("OTP hết hạn.");
-//        }
-//        if (Calendar.getInstance().getTime().getTime() - otp.getCreatedAt().getTime() > 2 * 60 * 1000) {
-//            throw new TutorServiceException("OTP hết hạn.");
-//        }
-//        if (otp.getOtp() != validateOtpInpoutDTO.getOtp()) {
-//            throw new TutorServiceException("OTP không đúng.");
-//        }
-//        UserLogin userLogin = userLoginService.findUserLoginByUserId(user.getId());
-//        userLogin.setPassword(new BCryptPasswordEncoder().encode(validateOtpInpoutDTO.getPassword().trim()));
-//        userLoginService.save(userLogin);
-//        otpRepository.delete(otp);
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .message("Success")
-//                .build();
-//    }
-//
-//    @GetMapping("/user/avatar")
+    public ObjectResponseWrapper validateOTP(@RequestBody(required = true) ValidateOtpInpoutDTO validateOtpInpoutDTO) {
+        User user = userService.findByEmail(validateOtpInpoutDTO.getEmail());
+        if (user == null) {
+            throw new VeggyServiceException("Không tìm thấy user này.");
+        }
+
+        OTP otp = otpRepository.findOtpByUserId(user.getId());
+        if (otp == null) {
+            throw new VeggyServiceException("OTP hết hạn.");
+        }
+        if (Calendar.getInstance().getTime().getTime() - otp.getCreated_at().getTime() > 2 * 60 * 1000) {
+            throw new VeggyServiceException("OTP hết hạn.");
+        }
+        if (otp.getOtp_number() != validateOtpInpoutDTO.getOtp()) {
+            throw new VeggyServiceException("OTP không đúng.");
+        }
+        UserLogin userLogin = userLoginService.findUserLoginByUserId(user.getId());
+        userLogin.setPassword(new BCryptPasswordEncoder().encode(validateOtpInpoutDTO.getPassword().trim()));
+        userLoginService.save(userLogin);
+        otpRepository.delete(otp);
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .message("Success")
+                .build();
+    }
+
+    @GetMapping("/user/avatar")
 //    @Operation(summary = "Cập nhật avatar")
 //    @RequiredHeaderToken
-//    public ObjectResponseWrapper updateAvtatr(@Valid @RequestBody UpdateAvatarInputDTO updateAvatarInputDTO) {
-//        User user = userService.findById(updateAvatarInputDTO.getId());
-//        if (user == null) {
-//            throw new TutorServiceException("Không tìm thấy user này.");
-//        }
-//        user.setUrlAvt(updateAvatarInputDTO.getUrl());
-//        userRepository.save(user);
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .message("Cập nhật avatar thành công.")
-//                .build();
-//    }
-//
-//    @PutMapping("/users")
+    public ObjectResponseWrapper updateAvtatr(@Valid @RequestBody UpdateAvatarInputDTO updateAvatarInputDTO) {
+        User user = userService.findById(updateAvatarInputDTO.getId());
+        if (user == null) {
+            throw new VeggyServiceException("Không tìm thấy user này.");
+        }
+        user.setUser_url_avt(updateAvatarInputDTO.getUrl());
+        userRepository.save(user);
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .message("Cập nhật avatar thành công.")
+                .build();
+    }
+
+    @PutMapping("/users")
 //    @Operation(summary = "Danh sách khách hàng")
-////    @RequiredHeaderToken
-//    public ObjectResponseWrapper getUsers() {
-//        List<User> userList = userRepository.findAll();
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .data(userList)
-//                .build();
-//    }
-//
-//
-//    @PutMapping("/user")
-//    @Operation(summary = "Cập nhật thông tin tài khoản")
-////    @RequiredHeaderToken
-//    public ObjectResponseWrapper updateInformationAccount(@Valid @RequestBody UpdateUserInputDTO updateUserInputDTO) {
-//        User user = userService.findById(updateUserInputDTO.getId());
-//        if (user == null) {
-//            throw new TutorServiceException("Không tìm thấy user này.");
-//        }
-//        if(updateUserInputDTO.getBirthday() != null){
-//            user.setBirthday(new Date(updateUserInputDTO.getBirthday()));
-//        }
-//        if(updateUserInputDTO.getName() != null){
-//            user.setName(updateUserInputDTO.getName());
-//        }
-//
-//        if(updateUserInputDTO.getGender() != null){
-//            user.setGender(updateUserInputDTO.getGender().toString());
-//        }
-//
-//        if(updateUserInputDTO.getIntroduce() != null){
-//            user.setIntroduce(updateUserInputDTO.getIntroduce());
-//        }
-//
-//        if(updateUserInputDTO.getPhone() != null){
-//            user.setPhone(updateUserInputDTO.getPhone());
-//        }
-////        userRepository.save(user);
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .message("Cập nhật thông tin tài khoản thành công.")
-//                .build();
-//    }
-//
-//    @GetMapping("/hello")
 //    @RequiredHeaderToken
-//    @PreAuthorize("hasAnyAuthority('USER_READ')")
-//    public ObjectResponseWrapper hello() {
-//        return ObjectResponseWrapper.builder()
-//                .status(1)
-//                .data("Hello").build();
-//    }
+    public ObjectResponseWrapper getUsers() {
+        List<User> userList = userRepository.findAll();
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .data(userList)
+                .build();
+    }
+
+
+    @PutMapping("/user")
+//    @Operation(summary = "Cập nhật thông tin tài khoản")
+//    @RequiredHeaderToken
+    public ObjectResponseWrapper updateInformationAccount(@Valid @RequestBody UpdateUserInputDTO updateUserInputDTO) {
+        User user = userService.findById(updateUserInputDTO.getId());
+        if (user == null) {
+            throw new VeggyServiceException("Không tìm thấy user này.");
+        }
+        if(updateUserInputDTO.getBirthday() != null){
+            user.setBirthday(new Date(updateUserInputDTO.getBirthday()));
+        }
+        if(updateUserInputDTO.getName() != null){
+            user.setName(updateUserInputDTO.getName());
+        }
+
+        if(updateUserInputDTO.getGender() != null){
+            user.setGender(updateUserInputDTO.getGender().toString());
+        }
+
+        if(updateUserInputDTO.getPhone() != null){
+            user.setPhone(updateUserInputDTO.getPhone());
+        }
+//        userRepository.save(user);
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .message("Cập nhật thông tin tài khoản thành công.")
+                .build();
+    }
+
+    @GetMapping("/hello")
+//    @RequiredHeaderToken
+    @PreAuthorize("hasAnyAuthority('USER_READ')")
+    public ObjectResponseWrapper hello() {
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .data("Hello").build();
+    }
 
 }
 
