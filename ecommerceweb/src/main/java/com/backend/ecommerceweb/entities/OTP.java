@@ -8,15 +8,12 @@ import lombok.*;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@EqualsAndHashCode(callSuper = false)
 @Getter
 @Setter
-@Table(name = "`otp`")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "otp")
 public class OTP {
-
     @Id
     @Column(name = "user_id")
     private Long userId;
@@ -24,3 +21,4 @@ public class OTP {
     private Date created_at;
 
 }
+
