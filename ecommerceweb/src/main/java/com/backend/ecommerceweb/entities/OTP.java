@@ -12,10 +12,15 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
-@Table(name = "otp")
-public class OTP extends  BaseEntity{
+@Getter
+@Setter
+@Table(name = "`otp`")
+public class OTP {
 
-    private int otp_number;
+    @Id
+    @Column(name = "user_id")
+    private Long userId;
+    private long otp_number;
     private Date created_at;
 
 }
