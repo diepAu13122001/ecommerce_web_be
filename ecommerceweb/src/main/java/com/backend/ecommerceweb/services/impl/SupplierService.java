@@ -17,7 +17,7 @@ public class SupplierService extends ABaseService{
     }
     List<Supplier> findByTotalOrder(int totalOrder){
         return supplierRepository.findByTotalOrder(totalOrder);
-    }
+    } 
     Supplier findByPhone(String phone){
         return supplierRepository.findByPhone(phone);
     }

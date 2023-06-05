@@ -10,4 +10,5 @@ public interface IDistrictRepository extends JpaRepository<District, Long> {
     List<District> findByName(String districtName);
     List<District> findByNameContaining(String districtName);
     List<District> findByProvince(Long provinceId);
+    List<District> findAllByOrderByNameAsc();
 }

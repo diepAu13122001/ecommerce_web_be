@@ -1,18 +1,22 @@
 package com.backend.ecommerceweb.model.dtos.product;
 
 import com.backend.ecommerceweb.entities.Address;
+import com.backend.ecommerceweb.entities.ProductCancel;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
+import java.util.Date;
+
 @Data
 public class ProductCancelDTO {
-    private String address;
-    private Long wardId;
+    private int quantity;
+    private Double unitPrice;
+    private Long productId;
 
-    public Address toEntity() {
+    public ProductCancel toEntity() {
         ModelMapper modelMapper = new ModelMapper();
-        Address address = modelMapper.map(this, Address.class);
-        return address;
+        ProductCancel productCancel = modelMapper.map(this, ProductCancel.class);
+        return productCancel;
     }
 
 }

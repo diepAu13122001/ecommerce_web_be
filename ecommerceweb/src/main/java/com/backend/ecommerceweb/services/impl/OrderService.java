@@ -4,87 +4,120 @@ import com.backend.ecommerceweb.entities.Order;
 import com.backend.ecommerceweb.entities.PaymentMethod;
 import com.backend.ecommerceweb.entities.UserLogin;
 import com.backend.ecommerceweb.services.ABaseService;
+import com.backend.ecommerceweb.services.IOrderService;
 import com.backend.ecommerceweb.services.IUserLoginService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.stereotype.Service
-public class OrderService extends ABaseService{
-    List<Order> findByOrderedDate(Date orderedDate){
+public class OrderService extends ABaseService implements IOrderService {
+    public List<Order> findByOrderedDate(Date orderedDate) {
         return orderRepository.findByOrderedDate(orderedDate);
     }
 
-    List<Order> findByOrderedDateGreaterThanEqual(Date orderedDate){
+    public List<Order> findByOrderedDateGreaterThanEqual(Date orderedDate) {
         return orderRepository.findByOrderedDateGreaterThanEqual(orderedDate);
     }
 
-    List<Order> findByOrderedDateLessThanEqual(Date orderedDate){
+    public List<Order> findByOrderedDateLessThanEqual(Date orderedDate) {
         return orderRepository.findByOrderedDateLessThanEqual(orderedDate);
     }
 
-    List<Order> findByOrderedDateBetween(Date started, Date ended){
+    public List<Order> findByOrderedDateBetween(Date started, Date ended) {
         return orderRepository.findByOrderedDateBetween(started, ended);
     }
 
-    List<Order> findByDeliveredDate(Date deliveredDate){
+    public List<Order> findByDeliveredDate(Date deliveredDate) {
         return orderRepository.findByDeliveredDate(deliveredDate);
     }
 
-    List<Order> findByDeliveredDateGreaterThanEqual(Date deliveredDate){
+    public List<Order> findByDeliveredDateGreaterThanEqual(Date deliveredDate) {
         return orderRepository.findByDeliveredDateGreaterThanEqual(deliveredDate);
     }
 
-    List<Order> findByDeliveredDateLessThanEqual(Date deliveredDate){
+    public List<Order> findByDeliveredDateLessThanEqual(Date deliveredDate) {
         return orderRepository.findByDeliveredDateLessThanEqual(deliveredDate);
     }
 
-    List<Order> findByDeliveredDateBetween(Date started, Date ended){
+    public List<Order> findByDeliveredDateBetween(Date started, Date ended) {
         return orderRepository.findByDeliveredDateBetween(started, ended);
     }
 
-    List<Order> findByUpdatedDate(Date updatedDate){
+    public List<Order> findByUpdatedDate(Date updatedDate) {
         return orderRepository.findByUpdatedDate(updatedDate);
     }
 
-    List<Order> findByUpdatedDateGreaterThanEqual(Date updatedDate){
+    public List<Order> findByUpdatedDateGreaterThanEqual(Date updatedDate) {
         return orderRepository.findByUpdatedDateGreaterThanEqual(updatedDate);
     }
 
-    List<Order> findByUpdatedDateLessThanEqual(Date updatedDate){
+    public List<Order> findByUpdatedDateLessThanEqual(Date updatedDate) {
         return orderRepository.findByUpdatedDateLessThanEqual(updatedDate);
     }
 
-    List<Order> findByUpdatedDateBetween(Date started, Date ended){
+    public List<Order> findByUpdatedDateBetween(Date started, Date ended) {
         return orderRepository.findByUpdatedDateBetween(started, ended);
     }
 
-    List<Order> findByOrderStatus(String status){
+    public List<Order> findByOrderStatus(String status) {
         return orderRepository.findByOrderStatus(status);
     }
 
-    List<Order> findByPaymentMethod(Long methodId){
+    public List<Order> findByPaymentMethod(Long methodId) {
         return orderRepository.findByPaymentMethod(methodId);
     }
 
-    List<Order> findByCreatedUser(Long userId){
+    public List<Order> findByCreatedUser(Long userId) {
         return orderRepository.findByCreatedUser(userId);
     }
 
-    List<Order> findByUpdatedUser(Long userId){
+    public List<Order> findByUpdatedUser(Long userId) {
         return orderRepository.findByUpdatedUser(userId);
     }
 
-    List<Order> findByAddress(Long addressId){
+    public List<Order> findByAddress(Long addressId) {
         return orderRepository.findByAddress(addressId);
     }
 
-    List<Order> findByIsDelivered(boolean isDelivered){
+    public List<Order> findByIsDelivered(boolean isDelivered) {
         return orderRepository.findByIsDelivered(isDelivered);
     }
 
-    List<Order> findByShipper(Long shipperId){
+    public List<Order> findByShipper(Long shipperId) {
         return orderRepository.findByShipper(shipperId);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Order findById(Long id) {
+        Optional<Order> o = orderRepository.findById(id);
+        return o.isPresent() == false ? null : o.get();
+    }
+
+    @Override
+    public List<Order> findAllByOrderByOrderedDateDesc() {
+        return orderRepository.findAllByOrderByOrderedDateDesc();
+    }
+
+    @Override
+    public List<Order> findAllByOrderByDeliveredDateDesc() {
+        return orderRepository.findAllByOrderByDeliveredDateDesc();
+    }
+
+    @Override
+    public Order createOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
     }
 
 }

@@ -14,7 +14,6 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "order")
 public class Order extends BaseEntity {
-
     private Date orderedDate;
     private Date deliveredDate;
     private Date updatedDate;

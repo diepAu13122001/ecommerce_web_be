@@ -9,5 +9,8 @@ import java.util.Optional;
 
 public interface IProvinceRepository extends JpaRepository<Province, Long> {
     List<Province> findByName(String name);
+
     List<Province> findByNameContaining(String name);
+
+    List<Province> findAllByOrderByNameAsc();
 }

@@ -1,18 +1,23 @@
 package com.backend.ecommerceweb.model.dtos.product;
 
 import com.backend.ecommerceweb.entities.Address;
+import com.backend.ecommerceweb.entities.Product;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 @Data
 public class ProductDTO {
-    private String address;
-    private Long wardId;
+    private String name;
+    private Long categoryId;
+    private Double price;
+    private Long supplierId;
+    private Double cost;
 
-    public Address toEntity() {
+
+    public Product toEntity() {
         ModelMapper modelMapper = new ModelMapper();
-        Address address = modelMapper.map(this, Address.class);
-        return address;
+        Product product = modelMapper.map(this, Product.class);
+        return product;
     }
 
 }

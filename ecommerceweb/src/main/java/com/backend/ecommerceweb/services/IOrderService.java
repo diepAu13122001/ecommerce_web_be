@@ -46,10 +46,14 @@ public interface IOrderService {
 
     List<Order> findAll();
 
+    Order findById(Long id);
+
     List<Order> findAllByOrderByOrderedDateDesc();
 
     List<Order> findAllByOrderByDeliveredDateDesc();
 
     Order createOrder(Order order);
+
+    void deleteById(Long id);
 
 }

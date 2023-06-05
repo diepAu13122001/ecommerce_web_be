@@ -28,4 +28,13 @@ public interface IProductCancelRepository extends JpaRepository<ProductCancel, L
     List<ProductCancel> findByCreatedAtBetween(Date started, Date ended);
     List<ProductCancel> findByProduct(Long productId);
 
+    List<ProductCancel> findAllByOrderByQuantityDesc();
+
+    List<ProductCancel> findAllByOrderByQuantityAsc();
+
+    List<ProductCancel> findAllByOrderByCreatedAtDesc();
+
+    List<ProductCancel> findAllByOrderByUnitPriceDesc();
+
+    List<ProductCancel> findAllByOrderByUnitPriceAsc();
 }

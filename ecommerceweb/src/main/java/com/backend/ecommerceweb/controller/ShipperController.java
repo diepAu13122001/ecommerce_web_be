@@ -27,7 +27,6 @@ public class ShipperController extends BaseAPI {
             }
             Shipper shipperCreate = mapper.map(shipperDTO, Shipper.class);
             shipperCreate.setUrl_avt("https://i.pinimg.com/736x/97/d0/f9/97d0f95b9060ba41c4ea6bd1ae47267f.jpg");
-            //tạo user
             shipperCreate = shipperService.createShipper(shipperCreate);
 
             return ObjectResponseWrapper.builder()

@@ -71,20 +71,6 @@ public abstract class BaseAPI {
     @Autowired
     IAddressService addressService;
 
-    protected IOtpRepository otpRepository;
-
-//    @Autowired
-//    protected IProvinceRepository provinceRepository;
-//
-//    @Autowired
-//    protected IDistrictRepository districtRepository;
-//
-//    @Autowired
-//    protected IWardRepository wardRepository;
-//
-//    @Autowired
-//    protected IAddressRepository addressRepository;
-//
 //    @Autowired
 //    protected IOtpRepository otpRepository;
 
@@ -100,6 +86,18 @@ public abstract class BaseAPI {
 
     @Autowired
     IUserRoleService userRoleService;
+
+//    @Autowired
+//    protected IProvinceService provinceService;
+//
+//    @Autowired
+//    protected IDistrictService districtService;
+//
+//    @Autowired
+//    protected IWardService wardService;
+    // converter
+
+
 
 
     protected <T> T doPost(String urlStr, Class<T> forClass) throws Exception {

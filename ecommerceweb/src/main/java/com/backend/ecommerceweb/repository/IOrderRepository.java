@@ -50,4 +50,7 @@ public interface IOrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByShipper(Long shipperId);
 
 
+    List<Order> findAllByOrderByOrderedDateDesc();
+
+    List<Order> findAllByOrderByDeliveredDateDesc();
 }
