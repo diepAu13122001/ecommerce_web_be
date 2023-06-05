@@ -184,7 +184,7 @@ public class ProductController extends BaseAPI {
             }
             check.setName(productDTO.getName());
             check.setCategory(categoryService.findById(productDTO.getCategoryId()));
-            check.setSupplier(supplierService.findById(productDTO.getSupplierId()));
+//            check.setSupplier(supplierService.findById(productDTO.getSupplierId()));
             check.setPrice(productDTO.getPrice());
             check.setCost(productDTO.getCost());
 

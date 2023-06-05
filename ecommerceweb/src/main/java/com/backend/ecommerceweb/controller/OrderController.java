@@ -261,7 +261,7 @@ public class OrderController extends BaseAPI {
                 .build();
     }
 
-    @GetMapping("getByUpdatedDateBetween/sDate}-{sMonth}-{sYear}/{eDate}-{eMonth}-{eYear}")
+    @GetMapping("getByUpdatedDateBetween/{sDate}-{sMonth}-{sYear}/{eDate}-{eMonth}-{eYear}")
     public ObjectResponseWrapper findByUpdatedDateBetween(@PathVariable int sDate, @PathVariable int sMonth, @PathVariable int sYear, @PathVariable int eDate, @PathVariable int eMonth, @PathVariable int eYear) {
         Date started = new Date(sYear, sMonth, sDate);
         Date ended = new Date(eYear, eMonth, eDate);

@@ -92,8 +92,8 @@ public abstract class BaseAPI {
     @Autowired
     IDistrictService districtService;
 
-    @Autowired
-    IWardService wardService;
+//    @Autowired
+//    IWardService wardService;
 
     @Autowired
     IProductCancelService productCancelService;
@@ -104,8 +104,11 @@ public abstract class BaseAPI {
     @Autowired
     ICategoryService categoryService;
 
+//    @Autowired
+//    ISupplierService supplierService;
+
     @Autowired
-    ISupplierService supplierService;
+    IOrderService orderService;
 
     protected <T> T doPost(String urlStr, Class<T> forClass) throws Exception {
         URL url = new URL(urlStr);
