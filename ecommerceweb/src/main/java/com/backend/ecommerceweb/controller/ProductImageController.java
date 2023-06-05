@@ -8,8 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(Constants.API_VERSION+"/productImage")
 public class ProductImageController extends BaseAPI {
-    @GetMapping("")
-    public String getDemoString () {
-        return "Hello";
-    }
+
 }

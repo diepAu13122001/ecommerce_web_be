@@ -99,6 +99,9 @@ public abstract class BaseAPI {
     IProductCancelService productCancelService;
 
     @Autowired
+    IProductDescriptionService productDescriptionService;
+
+    @Autowired
     IProductService productService;
 
     @Autowired

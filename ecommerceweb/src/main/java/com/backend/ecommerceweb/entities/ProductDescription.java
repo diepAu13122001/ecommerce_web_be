@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "product_description")
 public class ProductDescription extends BaseEntity {
 
-    private String productStorageTemp;
+    private String productStorageTemp; //nhiet do bao quan ???
     private Date expiryDate; // ngay san xuat
     private Date manufacturingDate; // ngay het han
     private Double productWeigh;
