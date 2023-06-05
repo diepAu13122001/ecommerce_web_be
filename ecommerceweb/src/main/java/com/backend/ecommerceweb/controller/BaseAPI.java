@@ -71,15 +71,15 @@ public abstract class BaseAPI {
     @Autowired
     IAddressService addressService;
 
-//    @Autowired
-//    protected IOtpRepository otpRepository;
+    @Autowired
+    protected IOtpRepository otpRepository;
 
     // service
     @Autowired
     IUserService userService;
 
-//    @Autowired
-//    ITokenService tokenService;
+    @Autowired
+    IPaymentMethodService paymentMethodService;
 
     @Autowired
     IUserLoginService userLoginService;
@@ -87,18 +87,25 @@ public abstract class BaseAPI {
     @Autowired
     IUserRoleService userRoleService;
 
-//    @Autowired
-//    protected IProvinceService provinceService;
-//
-//    @Autowired
-//    protected IDistrictService districtService;
-//
-//    @Autowired
-//    protected IWardService wardService;
-    // converter
+    @Autowired
+    IProvinceService provinceService;
+    @Autowired
+    IDistrictService districtService;
 
+    @Autowired
+    IWardService wardService;
 
+    @Autowired
+    IProductCancelService productCancelService;
 
+    @Autowired
+    IProductService productService;
+
+    @Autowired
+    ICategoryService categoryService;
+
+    @Autowired
+    ISupplierService supplierService;
 
     protected <T> T doPost(String urlStr, Class<T> forClass) throws Exception {
         URL url = new URL(urlStr);
