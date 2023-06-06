@@ -39,11 +39,11 @@ public interface IOrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByPaymentMethod(Long methodId);
 
-    List<Order> findByCreatedUser(Long userId);
+    List<Order> findByCreatedUserId(Long userId);
 
-    List<Order> findByUpdatedUser(Long userId);
+    List<Order> findByUpdatedUserId(Long userId);
 
-    List<Order> findByAddress(Long addressId);
+    List<Order> findByAddressId(Long addressId);
 
     List<Order> findByIsDelivered(boolean isDelivered);
 

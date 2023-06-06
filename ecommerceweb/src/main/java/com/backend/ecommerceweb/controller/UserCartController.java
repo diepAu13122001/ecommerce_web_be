@@ -94,16 +94,17 @@ public class UserCartController extends BaseAPI {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ObjectResponseWrapper deleteUserCart(@PathVariable Long userCartId) {
-        UserCart check = userCartService.findById(userCartId);
+    @GetMapping("/deleteProduct/{id}/{productId}")
+    public ObjectResponseWrapper deleteUserCart(@PathVariable Long id, @PathVariable Long productId) {
+        UserCart check = userCartService.findById(id);
         if (check == null) {
             throw new VeggyServiceException("Không tìm thấy dữ liệu theo yêu cầu.");
         }
-        userCartService.delete(userCartId);
+        check.getProducts().remove(productService.findById(productId));
         return ObjectResponseWrapper.builder()
                 .status(1)
                 .message("Xoá dữ liệu thành công.")
+                .data(check)
                 .build();
     }
 

@@ -302,7 +302,7 @@ public class OrderController extends BaseAPI {
 
     @GetMapping("getByCreatedUser/{userId}")
     public ObjectResponseWrapper findByCreatedUser(@PathVariable Long userId) {
-        List<Order> check = orderService.findByCreatedUser(userId);
+        List<Order> check = orderService.findByCreatedUserId(userId);
         if (check == null) {
             throw new VeggyServiceException("Không tìm thấy dữ liệu theo yêu cầu.");
         }
@@ -314,7 +314,7 @@ public class OrderController extends BaseAPI {
 
     @GetMapping("getByUpdatedUser/{userId}")
     public ObjectResponseWrapper findByUpdatedUser(@PathVariable Long userId) {
-        List<Order> check = orderService.findByUpdatedUser(userId);
+        List<Order> check = orderService.findByUpdatedUserId(userId);
         if (check == null) {
             throw new VeggyServiceException("Không tìm thấy dữ liệu theo yêu cầu.");
         }
@@ -326,7 +326,7 @@ public class OrderController extends BaseAPI {
 
     @GetMapping("getByAddress/{addressId}")
     public ObjectResponseWrapper findByAddress(@PathVariable Long addressId) {
-        List<Order> check = orderService.findByAddress(addressId);
+        List<Order> check = orderService.findByAddressId(addressId);
         if (check == null) {
             throw new VeggyServiceException("Không tìm thấy dữ liệu theo yêu cầu.");
         }
@@ -336,7 +336,7 @@ public class OrderController extends BaseAPI {
                 .build();
     }
 
-    @GetMapping("getByOrderedDate/{isDelivered}")
+    @GetMapping("findByIsDelivered/{isDelivered}")
     public ObjectResponseWrapper findByIsDelivered(@PathVariable boolean isDelivered) {
         List<Order> check = orderService.findByIsDelivered(isDelivered);
         if (check == null) {
@@ -348,7 +348,7 @@ public class OrderController extends BaseAPI {
                 .build();
     }
 
-    @GetMapping("getByOrderedDate/{shipperId}")
+    @GetMapping("findByShipper/{shipperId}")
     public ObjectResponseWrapper findByShipper(@PathVariable Long shipperId) {
         List<Order> check = orderService.findByShipper(shipperId);
         if (check == null) {

@@ -69,16 +69,31 @@ public class OrderService extends ABaseService implements IOrderService {
         return orderRepository.findByPaymentMethod(methodId);
     }
 
+    @Override
+    public List<Order> findByCreatedUserId(Long userId) {
+        return orderRepository.findByCreatedUserId(userId);
+    }
+
+    @Override
+    public List<Order> findByUpdatedUserId(Long userId) {
+        return orderRepository.findByUpdatedUserId(userId);
+    }
+
+    @Override
+    public List<Order> findByAddressId(Long addressId) {
+        return orderRepository.findByAddressId(addressId);
+    }
+
     public List<Order> findByCreatedUser(Long userId) {
-        return orderRepository.findByCreatedUser(userId);
+        return orderRepository.findByCreatedUserId(userId);
     }
 
     public List<Order> findByUpdatedUser(Long userId) {
-        return orderRepository.findByUpdatedUser(userId);
+        return orderRepository.findByUpdatedUserId(userId);
     }
 
     public List<Order> findByAddress(Long addressId) {
-        return orderRepository.findByAddress(addressId);
+        return orderRepository.findByAddressId(addressId);
     }
 
     public List<Order> findByIsDelivered(boolean isDelivered) {
