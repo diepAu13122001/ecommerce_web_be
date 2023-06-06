@@ -62,7 +62,7 @@ public class UserController extends BaseAPI{
             /* tạo role*/
             UserRole role = new UserRole();
             role.setUserId(userCreate.getId());
-            role.setRoleId("ADMIN");
+            role.setRoleId("USER");
             userRoleRepository.save(role);
 
 
@@ -94,7 +94,6 @@ public class UserController extends BaseAPI{
 
     @PostMapping("/login")
     public ObjectResponseWrapper login(@Valid @RequestBody LoginDTO user) {
-//        UserLogin userNet = userLoginService.findByUserName(user.getEmail());
         User userNet = userService.findByEmail(user.getEmail());
 
         if (userNet == null || userNet.getUserLogin() == null) {
@@ -288,7 +287,7 @@ public class UserController extends BaseAPI{
                 .build();
     }
 
-    @PutMapping("/users")
+    @GetMapping("/users")
 //    @Operation(summary = "Danh sách khách hàng")
 //    @RequiredHeaderToken
     public ObjectResponseWrapper getUsers() {
