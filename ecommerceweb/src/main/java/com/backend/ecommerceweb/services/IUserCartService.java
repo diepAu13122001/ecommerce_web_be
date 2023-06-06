@@ -10,7 +10,7 @@ public interface IUserCartService {
 
     List<UserCart> findByGiftId(Long id);
 
-    UserCart findByUser(Long userId);
+    UserCart findByUserId(Long userId);
 
     List<UserCart> findAll();
 

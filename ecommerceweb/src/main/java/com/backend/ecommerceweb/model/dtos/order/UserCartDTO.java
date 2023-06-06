@@ -1,18 +1,22 @@
 package com.backend.ecommerceweb.model.dtos.order;
 
 import com.backend.ecommerceweb.entities.Address;
+import com.backend.ecommerceweb.entities.UserCart;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 @Data
 public class UserCartDTO {
-    private String address;
-    private Long wardId;
 
-    public Address toEntity() {
+    private int productAmount;
+//    private Long giftId;
+    private Long userId;
+
+    public UserCart toEntity() {
         ModelMapper modelMapper = new ModelMapper();
-        Address address = modelMapper.map(this, Address.class);
-        return address;
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+        UserCart userCart = modelMapper.map(this, UserCart.class);
+        return userCart;
     }
 
 }

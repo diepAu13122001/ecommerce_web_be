@@ -68,8 +68,8 @@ public class ProductDescriptionService extends ABaseService implements IProductD
     }
 
     @Override
-    public ProductDescription findByProduct(Long productId) {
-        return productDescriptionRepository.findByProduct(productId);
+    public ProductDescription findByProductId(Long productId) {
+        return productDescriptionRepository.findByProductId(productId);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class ProductDescriptionService extends ABaseService implements IProductD
     }
 
     @Override
-    public ProductDescription createProductImage(ProductDescription ProductDescription) {
+    public ProductDescription create(ProductDescription ProductDescription) {
         return productDescriptionRepository.save(ProductDescription);
     }
 

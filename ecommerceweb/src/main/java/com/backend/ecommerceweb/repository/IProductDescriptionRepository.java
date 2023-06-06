@@ -3,6 +3,8 @@ package com.backend.ecommerceweb.repository;
 import com.backend.ecommerceweb.entities.Product;
 import com.backend.ecommerceweb.entities.ProductDescription;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -29,6 +31,7 @@ public interface IProductDescriptionRepository extends JpaRepository<ProductDesc
     List<ProductDescription> findByProductWeighGreaterThanEqual(Double productWeigh);
 
     List<ProductDescription> findByProductDesContaining(String description);
-    ProductDescription findByProduct(Long productId);
+
+    ProductDescription findByProductId(@Param("id") Long productId);
 
 }

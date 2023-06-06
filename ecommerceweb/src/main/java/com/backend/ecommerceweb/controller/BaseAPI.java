@@ -88,6 +88,9 @@ public abstract class BaseAPI {
     IUserRoleService userRoleService;
 
     @Autowired
+    IUserCartService userCartService;
+
+    @Autowired
     IProvinceService provinceService;
     @Autowired
     IDistrictService districtService;
@@ -103,6 +106,9 @@ public abstract class BaseAPI {
 
     @Autowired
     IProductService productService;
+
+    @Autowired
+    IProductImageService productImageService;
 
     @Autowired
     ICategoryService categoryService;

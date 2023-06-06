@@ -1,18 +1,19 @@
 package com.backend.ecommerceweb.model.dtos.product;
 
-import com.backend.ecommerceweb.entities.Address;
+import com.backend.ecommerceweb.entities.ProductImage;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 @Data
 public class ProductImageDTO {
-    private String address;
-    private Long wardId;
+    private String imgUrl;
+    private String imgAlt;
+    private Long productId;
 
-    public Address toEntity() {
+    public ProductImage toEntity() {
         ModelMapper modelMapper = new ModelMapper();
-        Address address = modelMapper.map(this, Address.class);
-        return address;
+        ProductImage productImage = modelMapper.map(this, ProductImage.class);
+        return productImage;
     }
 
 }

@@ -8,8 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(Constants.API_VERSION+"/supplier")
 public class SupplierController extends BaseAPI {
-    @GetMapping("")
-    public String getDemoString () {
-        return "Hello";
-    }
+
 }

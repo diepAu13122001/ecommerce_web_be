@@ -29,10 +29,5 @@ public class Product  extends  BaseEntity{
 
     private Double cost;
 
-    @OneToMany
-    @JoinColumn(name = "product_image", referencedColumnName = "id")
-    @JsonIgnoreProperties("product_id")
-    private List<ProductImage> productImages;
-
 
 }

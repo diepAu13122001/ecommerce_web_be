@@ -29,13 +29,13 @@ public interface IProductDescriptionService {
 
     List<ProductDescription> findByProductDesContaining(String description);
 
-    ProductDescription findByProduct(Long productId);
+    ProductDescription findByProductId(Long productId);
 
     List<ProductDescription> findAll();
 
     ProductDescription findById(Long id);
 
-    ProductDescription createProductImage(ProductDescription productDescription);
+    ProductDescription create(ProductDescription productDescription);
 
     void delete(Long id);
 }

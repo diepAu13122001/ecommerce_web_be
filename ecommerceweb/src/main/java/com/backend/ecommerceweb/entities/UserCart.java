@@ -19,7 +19,6 @@ public class UserCart extends BaseEntity {
     private List<Product> products;
     private int productAmount;
     private Long giftId;
-
     @OneToOne
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
