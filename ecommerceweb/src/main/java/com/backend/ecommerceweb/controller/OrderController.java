@@ -19,6 +19,7 @@ public class OrderController extends BaseAPI {
         try {
             Order orderCreate = mapper.map(orderCreateDTO, Order.class);
             orderCreate = orderService.createOrder(orderCreate);
+            orderCreate.setDeliveredDate(new Date());
 
             return ObjectResponseWrapper.builder()
                     .status(1)

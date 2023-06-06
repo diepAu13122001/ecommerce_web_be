@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 public class OrderCreateDTO {
     //private Date orderedDate;
-    private Date deliveredDate;
+//    private Date deliveredDate;
     private String orderStatus;
     private Long paymentMethodId;
     private Long createdUserId;
