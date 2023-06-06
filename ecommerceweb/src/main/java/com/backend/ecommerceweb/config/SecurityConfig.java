@@ -33,16 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         config.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-//        httpSecurity.addFilterBefore(new AuthenticationFilter(authenticationManager(), Constants.HEADER_TOKEN_NAME), UsernamePasswordAuthenticationFilter.class)
-//                .csrf()
-//                .disable();
-//                .and()
-//                .exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-
         httpSecurity
                 .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .and()
-                .csrf().disable().authorizeRequests().antMatchers(Constants.AUTH_SERVICE_URL + "/register").permitAll()
+                .csrf().disable().authorizeRequests()
+                .antMatchers(Constants.AUTH_SERVICE_URL + "/register").permitAll()
                 .and()
                 .csrf().disable().addFilterBefore(
                         new AuthenticationFilter(authenticationManager(), Constants.HEADER_TOKEN_NAME),

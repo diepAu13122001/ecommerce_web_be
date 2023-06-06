@@ -1,11 +1,14 @@
 package com.backend.ecommerceweb.controller;
 
 import com.backend.ecommerceweb.entities.Address;
+import com.backend.ecommerceweb.entities.User;
 import com.backend.ecommerceweb.handler.VeggyServiceException;
 import com.backend.ecommerceweb.model.dtos.address.AddressDTO;
 import com.backend.ecommerceweb.model.wrapper.ObjectResponseWrapper;
 import com.backend.ecommerceweb.utils.Constants;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(Constants.API_VERSION+"/address")
@@ -66,6 +69,18 @@ public class AddressController extends BaseAPI {
                 .data(addressService.findAll()).build();
 
     }
+
+    @PutMapping("/a")
+//    @Operation(summary = "Danh sách khách hàng")
+//    @RequiredHeaderToken
+    public ObjectResponseWrapper getUsers() {
+        List<User> userList = userRepository.findAll();
+        return ObjectResponseWrapper.builder()
+                .status(1)
+                .data(userList)
+                .build();
+    }
+
 
     @GetMapping("/get/{id}")
     public ObjectResponseWrapper getAddressById(@PathVariable Long addressId) {
